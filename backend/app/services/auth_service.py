@@ -34,13 +34,14 @@ def _create_session(user_document):
 def signup(data, background_tasks):
     email = data.email.strip().lower()
     existing = user_model.find_by_email(email)
-
+    
     if existing is not None and existing["is_verified"]:
         raise AppError("An account with this email already exists.", 409)
 
     if existing is not None:
         # Signed up before but never verified, so start fresh
         user_model.delete_by_email(email)
+    
 
     user = User(data.full_name.strip(), email, _hash_password(data.password), data.role)
     user_model.insert_user(user)

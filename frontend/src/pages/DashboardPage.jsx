@@ -17,7 +17,7 @@ export default function DashboardPage() {
     <AuthLayout subtitle={"Hello, " + user.full_name + "!"}>
       <p style={styles.centerText}>
         You are logged in as a <strong>{user.role}</strong>.
-      </p>
+      </p> 
       <PrimaryButton text="Log out" type="button" onClick={handleLogout} />
     </AuthLayout>
   );
