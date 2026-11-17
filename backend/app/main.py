@@ -3,9 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app import config
-from app.controllers import auth_controller
 from app.exceptions import AppError
-from app.repositories.database import create_indexes
+from app.models.database import create_indexes
+from app.routes import auth_routes
 
 create_indexes()
 
@@ -24,4 +24,4 @@ def handle_app_error(request: Request, error: AppError):
     return JSONResponse(status_code=error.status_code, content={"detail": error.message})
 
 
-app.include_router(auth_controller.router)
+app.include_router(auth_routes.router)
