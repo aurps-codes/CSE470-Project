@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authService from "../services/authService";
 
@@ -5,13 +6,12 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // We only need to wait for the server when a saved token exists
+  const [loading, setLoading] = useState(() => localStorage.getItem("token") !== null);
 
   // When the app loads, check if a saved token is still valid
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setLoading(false);
+    if (localStorage.getItem("token") === null) {
       return;
     }
 
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   async function logout() {
     try {
       await authService.logout();
-    } catch (error) {
+    } catch {
       // even if the server call fails, log out locally
     }
     localStorage.removeItem("token");
