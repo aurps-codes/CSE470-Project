@@ -9,6 +9,7 @@ db = client[config.DATABASE_NAME]
 users_collection = db["users"]
 otps_collection = db["otps"]
 sessions_collection = db["sessions"]
+course_verifications_collection = db["course_verifications"]
 
 
 def create_indexes():
@@ -22,3 +23,6 @@ def create_indexes():
 
     sessions_collection.create_index("token", unique=True)
     sessions_collection.create_index("expires_at", expireAfterSeconds=0)
+
+    course_verifications_collection.create_index("teacher_id")
+    course_verifications_collection.create_index("status")

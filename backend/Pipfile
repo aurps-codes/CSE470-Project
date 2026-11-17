@@ -10,5 +10,6 @@ pymongo = "*"
 email-validator = "*"
 python-dotenv = "*"
 bcrypt = "*"
+python-multipart = "*"
 
 [dev-packages]

@@ -5,6 +5,8 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import OtpPage from "./pages/OtpPage";
 import DashboardPage from "./pages/DashboardPage";
+import VerifyCoursePage from "./pages/VerifyCoursePage";
+import AdminCourseVerificationPage from "./pages/AdminCourseVerificationPage";
 
 export default function App() {
   return (
@@ -20,6 +22,22 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/verify-course"
+            element={
+              <ProtectedRoute role="teacher">
+                <VerifyCoursePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/course-verifications"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminCourseVerificationPage />
               </ProtectedRoute>
             }
           />

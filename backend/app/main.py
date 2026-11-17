@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from app import config
 from app.exceptions import AppError
 from app.models.database import create_indexes
-from app.routes import auth_routes
+from app.routes import auth_routes, course_verification_routes
 
 create_indexes()
 
@@ -23,5 +23,8 @@ app.add_middleware(
 def handle_app_error(request: Request, error: AppError):
     return JSONResponse(status_code=error.status_code, content={"detail": error.message})
 
-
+#aurpita
 app.include_router(auth_routes.router)
+
+#rajesh
+app.include_router(course_verification_routes.router)

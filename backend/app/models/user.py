@@ -10,6 +10,7 @@ class User:
         self.password_hash = password_hash
         self.role = role              
         self.is_verified = False
+        self.verified_subjects = []   # filled when the admin approves a course verification
         self.created_at = datetime.now(timezone.utc)
 
     def to_document(self):
@@ -19,6 +20,7 @@ class User:
             "password_hash": self.password_hash,
             "role": self.role,
             "is_verified": self.is_verified,
+            "verified_subjects": self.verified_subjects,
             "created_at": self.created_at,
         }
 
@@ -54,3 +56,8 @@ def mark_verified(email):
 
 def delete_by_email(email):
     users_collection.delete_one({"email": email})
+
+
+def add_verified_subject(user_id, subject):
+    # $addToSet adds the subject only if it is not already in the list
+    users_collection.update_one({"_id": user_id}, {"$addToSet": {"verified_subjects": subject}})

@@ -14,3 +14,14 @@ def get_token(authorization: str = Header(default="")):
 
 def get_current_user(token: str = Depends(get_token)):
     return auth_service.get_user_from_token(token)
+
+def require_teacher(current_user=Depends(get_current_user)):
+    if current_user["role"] != "teacher":
+        raise AppError("Only teachers can do this.", 403)
+    return current_user
+
+
+def require_admin(current_user=Depends(get_current_user)):
+    if current_user["role"] != "admin":
+        raise AppError("Only admins can do this.", 403)
+    return current_user

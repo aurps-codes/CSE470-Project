@@ -14,3 +14,11 @@ SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
 SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+
+# Uploaded verification documents are saved here (this folder is not committed to git)
+UPLOAD_DIR = os.getenv(
+    "UPLOAD_DIR", os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+)
+MAX_FILE_MB = 5
+MAX_FILES_PER_REQUEST = 5
+ALLOWED_FILE_EXTENSIONS = [".pdf", ".png", ".jpg", ".jpeg"]
