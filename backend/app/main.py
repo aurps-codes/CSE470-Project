@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from app import config
 from app.exceptions import AppError
 from app.models.database import create_indexes
-from app.routes import auth_routes, course_verification_routes
+from app.routes import auth_routes, course_verification_routes, post_routes
 
 create_indexes()
 
@@ -28,3 +28,6 @@ app.include_router(auth_routes.router)
 
 #rajesh
 app.include_router(course_verification_routes.router)
+
+#aishwarja
+app.include_router(post_routes.router)

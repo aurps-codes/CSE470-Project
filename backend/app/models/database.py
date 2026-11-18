@@ -10,6 +10,7 @@ users_collection = db["users"]
 otps_collection = db["otps"]
 sessions_collection = db["sessions"]
 course_verifications_collection = db["course_verifications"]
+posts_collection = db["posts"]
 
 
 def create_indexes():
@@ -26,3 +27,8 @@ def create_indexes():
 
     course_verifications_collection.create_index("teacher_id")
     course_verifications_collection.create_index("status")
+
+    # Posts: newest first (all posts, and posts of one type), and "my posts"
+    posts_collection.create_index([("created_at", -1)])
+    posts_collection.create_index([("post_type", ASCENDING), ("created_at", -1)])
+    posts_collection.create_index("author_id")

@@ -2,7 +2,8 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { styles } from "../styles/theme";
 
-// role is optional: when given, only users with that role may open the page
+// role is optional: when given, only users with that role may open the page.
+// It can be one role ("admin") or a list of roles (["student", "teacher"]).
 export default function ProtectedRoute({ children, role }) {
   const { user, loading } = useAuth();
 
@@ -12,7 +13,7 @@ export default function ProtectedRoute({ children, role }) {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  if (role && user.role !== role) {
+  if (role && ![].concat(role).includes(user.role)) {
     return <Navigate to="/dashboard" replace />;
   }
   return children;

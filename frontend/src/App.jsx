@@ -7,6 +7,9 @@ import OtpPage from "./pages/OtpPage";
 import DashboardPage from "./pages/DashboardPage";
 import VerifyCoursePage from "./pages/VerifyCoursePage";
 import AdminCourseVerificationPage from "./pages/AdminCourseVerificationPage";
+import CreatePostPage from "./pages/CreatePostPage";
+import MyPostsPage from "./pages/MyPostsPage";
+import PostsPage from "./pages/PostsPage";
 
 export default function App() {
   return (
@@ -38,6 +41,30 @@ export default function App() {
             element={
               <ProtectedRoute role="admin">
                 <AdminCourseVerificationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              <ProtectedRoute>
+                <PostsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/posts/new"
+            element={
+              <ProtectedRoute role={["student", "teacher"]}>
+                <CreatePostPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-posts"
+            element={
+              <ProtectedRoute role={["student", "teacher"]}>
+                <MyPostsPage />
               </ProtectedRoute>
             }
           />

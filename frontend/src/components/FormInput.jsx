@@ -10,6 +10,10 @@ export default function FormInput({
   extraStyle,
   maxLength,
   inputMode,
+  required = true,
+  min,
+  max,
+  step,
 }) {
   const [focused, setFocused] = useState(false);
 
@@ -28,10 +32,13 @@ export default function FormInput({
         placeholder={placeholder}
         maxLength={maxLength}
         inputMode={inputMode}
+        min={min}
+        max={max}
+        step={step}
         style={inputStyle}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        required
+        required={required}
       />
     </div>
   );

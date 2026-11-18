@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8001/api";
 
 export async function apiRequest(path, method = "GET", body = null) {
   // A form with files is sent as FormData; the browser sets its Content-Type itself
@@ -33,7 +33,10 @@ export async function apiRequest(path, method = "GET", body = null) {
     if (typeof data.detail === "string") {
       message = data.detail;
     } else if (Array.isArray(data.detail)) {
-      message = data.detail[0].msg;
+      // Name the field so the user knows what to fix, e.g. "title: String should have ..."
+      const first = data.detail[0];
+      const field = Array.isArray(first.loc) ? String(first.loc[first.loc.length - 1]) : "";
+      message = field ? field.replace(/_/g, " ") + ": " + first.msg : first.msg;
     }
     throw new Error(message);
   }

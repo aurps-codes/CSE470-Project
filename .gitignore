@@ -5,3 +5,5 @@ dist/
 .vscode/
 backend/uploads/
 .env.local
+mydb.gz
+tutornest.archive

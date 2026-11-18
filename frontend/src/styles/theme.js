@@ -249,6 +249,72 @@ export const styles = {
     width: "100%",
     fontSize: "14px",
   },
+
+  // ----- Posts -----
+  select: {
+    width: "100%",
+    padding: "12px 14px",
+    border: "1px solid " + colors.border,
+    borderRadius: "10px",
+    fontSize: "15px",
+    boxSizing: "border-box",
+    background: "#ffffff",
+    fontFamily: "inherit",
+  },
+  formGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: "0 16px",
+  },
+  dayRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+  },
+  dayButton: {
+    padding: "8px 12px",
+    border: "1px solid " + colors.border,
+    background: "#ffffff",
+    borderRadius: "10px",
+    cursor: "pointer",
+    fontSize: "14px",
+  },
+  dayButtonActive: {
+    background: colors.primary,
+    border: "1px solid " + colors.primary,
+    color: "#ffffff",
+  },
+  badgeRequest: { background: "#dbeafe", color: "#1e40af" },
+  badgeOffer: { background: "#ede9fe", color: "#5b21b6" },
+  postDetails: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "4px 18px",
+    fontSize: "14px",
+    margin: "8px 0",
+  },
+  postDescription: {
+    fontSize: "14px",
+    margin: "8px 0",
+    whiteSpace: "pre-wrap",
+  },
+  postFooter: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "10px",
+    fontSize: "13px",
+    color: colors.muted,
+    marginTop: "8px",
+  },
+  dangerButton: {
+    background: "#dc2626",
+  },
+  menuColumn: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
 };
 
 // Replaces the "body" rules we would normally put in a CSS file
